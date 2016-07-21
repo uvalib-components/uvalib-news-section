@@ -1,0 +1,71 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-ajax/iron-ajax.html">
+<link rel="import" href="../uvalib-helper-libs/lodash.html">
+
+<!--
+`uvalib-news`
+This component handles fetching the news json
+
+@demo demo/index.html
+-->
+
+<dom-module id="uvalib-news">
+  <template>
+    <iron-ajax id="newsfeed" auto url="news.json" handle-as="json" on-response="_handleResponse"></iron-ajax>
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'uvalib-news',
+
+      properties: {
+        items: {
+          type: Array,
+          notify: true
+        },
+        limit: Number
+      },
+
+      _handleResponse: function(){
+        if (this.limit)
+          this.items = this.$.newsfeed.lastResponse.posts.slice(0,this.limit);
+        else
+          this.items = this.$.newsfeed.lastResponse.posts;
+      }
+
+    });
+  </script>
+</dom-module>
+
+<!--
+`uvalib-banners`
+This component handles fetching the news banners json
+
+@demo demo/index.html
+-->
+
+<dom-module id="uvalib-banners">
+  <template>
+    <iron-ajax id="bannerfeed" auto url="banners.json" handle-as="json" on-response="_handleResponse"></iron-ajax>
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'uvalib-banners',
+
+      properties: {
+        items: {
+          type: Array,
+          notify: true
+        }
+      },
+
+      _handleResponse: function(){
+        this.items = this.$.bannerfeed.lastResponse.posts;
+      }
+
+    });
+  </script>
+</dom-module>

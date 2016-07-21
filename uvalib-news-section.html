@@ -1,10 +1,20 @@
 <link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
+
+<link rel="import" href="../uvalib-theme/uvalib-theme.html">
+<link rel="import" href="../uvalib-card/uvalib-card.html">
+<link rel="import" href="../uvalib-helper-libs/html-echo.html">
+<link rel="import" href="../uvalib-button/uvalib-button.html">
+
+<link rel="import" href="uvalib-news.html">
+<link rel="import" href="uvalib-news-banner.html">
+
 
 <!--
 `uvalib-news-section`
 This component handles the Library news display on the homepage
 
-@demo demo/index.html 
+@demo demo/index.html
 -->
 
 <dom-module id="uvalib-news-section">
@@ -12,9 +22,35 @@ This component handles the Library news display on the homepage
     <style>
       :host {
         display: block;
+        width: 100%;
+        @apply(--layout-vertical);
+      }
+
+      #news-items {
+        @apply(--layout-horizontal);
+        @apply(--layout-justified);
+      }
+
+      uvalib-card {
+        @apply(--layout-flex);
       }
     </style>
-    <h2>Hello [[prop1]]</h2>
+    <h1><a href="http://news.library.virginia.edu">News and Announcements</a></h1>
+    <uvalib-news-banner></uvalib-news-banner>
+    <div id="news-items">
+      <uvalib-news items="{{newsItems}}" limit="3"></uvalib-news>
+      <template is="dom-repeat" items="{{newsItems}}">
+        <uvalib-card heading="{{_decodeHtml(item.title)}}" elevation="0">
+          <div class="card-content">
+            <html-echo html="{{_truncate(item.content, 200)}}"></html-echo>
+          </div>
+          <div class="card-actions">
+              <uvalib-button href="{{item.url}}">More &raquo;</uvalib-button>
+          </div>
+        </uvalib-card>
+      </template>
+    </div>
+
   </template>
 
   <script>
@@ -28,6 +64,34 @@ This component handles the Library news display on the homepage
           value: 'uvalib-news-section',
         },
       },
+
+      _decodeHtml: function(html) {
+        var txt = document.createElement("textarea");
+        txt.innerHTML = html;
+        return txt.value;
+      },
+      _truncate: function(s, l){
+        if(s.length <= l){
+            return s;
+        } else {
+            var ts = "";
+            var subs = s.split('&');
+            if(subs[0].length > l){
+                return subs[0].substring(0, l) + "&hellip;";
+            } else {
+                ts = ts + subs[0];
+            }
+            for(var i = 1; i < subs.length; i++){
+                var end = subs[i].indexOf(';');
+                l += end + 1;
+                ts = ts + '&' + subs[i];
+                if(ts.length >= l){
+                    return ts.substring(0,l) + "&hellip;";
+                }
+            }
+            return ts;
+        }
+     }
 
     });
   </script>
