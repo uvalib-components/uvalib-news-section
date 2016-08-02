@@ -7,7 +7,6 @@
 <link rel="import" href="../uvalib-button/uvalib-button.html">
 
 <link rel="import" href="uvalib-news.html">
-<link rel="import" href="uvalib-news-banner.html">
 
 
 <!--
@@ -36,7 +35,6 @@ This component handles the Library news display on the homepage
       }
     </style>
     <h1><a href="http://news.library.virginia.edu">News and Announcements</a></h1>
-    <uvalib-news-banner></uvalib-news-banner>
     <div id="news-items">
       <uvalib-news items="{{newsItems}}" limit="3"></uvalib-news>
       <template is="dom-repeat" items="{{newsItems}}">
