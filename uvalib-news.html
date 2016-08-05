@@ -63,7 +63,13 @@ This component handles fetching the news banners json
       },
 
       _handleResponse: function(){
-        this.items = this.$.bannerfeed.lastResponse.posts;
+//        this.items = this.$.bannerfeed.lastResponse.posts;
+        this.items = _.map(this.$.bannerfeed.lastResponse.posts,
+                           function(item){
+                             if (item.attachments.length>0)
+                              item.image = item.attachments[0].url;
+                             return item;
+                           });
       }
 
     });

@@ -26,40 +26,40 @@ This component handles the Library news display on the homepage
     <style>
       :host {
         display: block;
-        width: 100%;
-        height: 320px;
-        @apply(--layout-horizontal);
-      }
-      #banner {
-        @apply(--layout-flex);
-        @apply(--layout-vertical);
-      }
-      #card {
-        width: 300px;
-        height: 100%
-      }
-      #banners {
-        height: 200px;
+        position: relative;
+        height: var(--uvalib-news-banner-height, 320px);
         overflow: hidden;
       }
+
+      uvalib-dot-selector {
+        --uvalib-dot-selector-dots: {
+          color: var(--color-white, white);
+        };
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        bottom: 0;
+      }
+
+      #card {
+        width: 300px;
+        height: 100%;
+      }
+      #banners {
+        position: relative;
+        height: 100%;
+        overflow: hidden;
+        background-size: cover;
+        background-position: center;
+      }
       #banners img {
-        width: 100%;
+        width: 100%
       }
-      #dots {
-        height: 100px;
-        @apply(--layout-horizontal);
-        margin-left: auto;
-        margin-right: auto;
-      }
-      .closed, .selected .open {
-        display: none;
-      }
-      .open, .selected .closed {
-        display: inline-block;
-      }
+
     </style>
 
     <uvalib-banners items="{{bannerItems}}"></uvalib-banners>
+<!--
     <div id="card">
       <neon-animated-pages id="cards" selected="{{selected}}" entry-animation="fade-in-animation" exit-animation="fade-out-animation">
         <template is="dom-repeat" items="{{bannerItems}}">
@@ -76,28 +76,19 @@ This component handles the Library news display on the homepage
         </template>
       </neon-animated-pages>
     </div>
-    <div id="banner">
+-->
       <div id="banners">
         <neon-animated-pages id="banner-images" selected="{{selected}}" entry-animation="slide-from-left-animation" exit-animation="slide-right-animation">
           <template is="dom-repeat" items="{{bannerItems}}">
             <neon-animatable>
-<!--              <img src="{{item.image}}"/>  -->
-              <img src="http://i2.wp.com/news.library.virginia.edu/files/2015/05/2015_SummerHours.png?resize=584%2C190&ssl=1" />
+              <img src="{{item.image}}"/>
             </neon-animatable>
           </template>
         </neon-animated-pages>
       </div>
 
-        <iron-selector id="dots" selected="{{selected}}" selected-class="selected">
-          <template is="dom-repeat" items="{{bannerItems}}">
-            <div class="selector">
-              <iron-icon class="closed" icon="circle"></iron-icon>
-              <iron-icon class="open" icon="circle-o"></iron-icon>
-            </div>
-          </template>
-        <iron-selector>
+      <uvalib-dot-selector length="{{_length(bannerItems)}}" selected="{{selected}}"></uvalib-dot-selector>
 
-    </div>
   </template>
 
   <script>
@@ -112,6 +103,9 @@ This component handles the Library news display on the homepage
         },
       },
 
+      _length: function(arry) {
+        return arry.length;
+      },
       _decodeHtml: function(html) {
         var txt = document.createElement("textarea");
         txt.innerHTML = html;
@@ -139,6 +133,74 @@ This component handles the Library news display on the homepage
             return ts;
         }
      }
+
+    });
+  </script>
+</dom-module>
+
+
+
+
+
+
+
+
+
+
+
+<dom-module id="uvalib-dot-selector">
+  <template>
+    <style>
+      :host {
+        display: inline-block;
+      }
+      #dots {
+        @apply(--layout-horizontal);
+        margin-left: auto;
+        margin-right: auto;
+        @apply(--uvalib-dot-selector-dots);
+      }
+      .closed, .selected .open {
+        display: none;
+      }
+      .open, .selected .closed {
+        display: inline-block;
+      }
+      iron-icon {
+        cursor: pointer;
+      }
+    </style>
+
+    <iron-selector id="dots" selected="{{selected}}" selected-class="selected">
+      <template is="dom-repeat" items="{{_getDummyArray(length)}}">
+            <div class="selector">
+              <iron-icon class="closed" icon="circle"></iron-icon>
+              <iron-icon class="open" icon="circle-o"></iron-icon>
+            </div>
+      </template>
+    <iron-selector>
+
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'uvalib-dot-selector',
+
+      properties: {
+        selected: {
+          type: Number,
+          value: 0,
+          notify: true
+        },
+        length: {
+          type: Number,
+          value: 0,
+        },
+      },
+      _getDummyArray: function(len){
+        return new Array(len);
+      }
 
     });
   </script>
