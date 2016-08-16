@@ -2,7 +2,6 @@
 <link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
 
 <link rel="import" href="../uvalib-theme/uvalib-theme.html">
-<link rel="import" href="../uvalib-card/uvalib-card.html">
 <link rel="import" href="../uvalib-helper-libs/html-echo.html">
 <link rel="import" href="../uvalib-button/uvalib-button.html">
 
@@ -23,32 +22,65 @@ This component handles the Library news display on the homepage
         display: block;
         width: 100%;
         @apply(--layout-vertical);
+        font-family: var(--font-primary);
       }
 
       #news-items {
         @apply(--layout-horizontal);
         @apply(--layout-justified);
       }
-
-      uvalib-card {
+      h2 {
+        text-align: center;
+      }
+      paper-material {
+        padding: 10px;
+        display: inline-block;
+        background: var(--color-light-gray);
+        margin: 10px;
+        @apply(--layout-flex);
+      }
+      .category {
+        color: var(--color-primary-orange);
+      }
+      .card-header a {
+        text-decoration: none;
+        color: #000000;
+      }
+      .card-content {
+      }
+      uvalib-button {
+        margin-left: auto;
+        margin-right: auto;
         @apply(--layout-flex);
       }
     </style>
-    <h1><a href="http://news.library.virginia.edu">News and Announcements</a></h1>
+    <h2>Library News</h2>
     <div id="news-items">
       <uvalib-news items="{{newsItems}}" limit="3"></uvalib-news>
       <template is="dom-repeat" items="{{newsItems}}">
-        <uvalib-card heading="{{_decodeHtml(item.title)}}" elevation="0">
-          <div class="card-content">
-            <html-echo html="{{_truncate(item.content, 200)}}"></html-echo>
+        <paper-material elevation="{{elevation}}">
+          <div class="card">
+            <div class="card-header">
+              <template is="dom-if" if="{{item.category}}">
+                <div class="category">{{item.category}}</div>
+              </template>
+              <a href="{{item.url}}"><h6>{{_decodeHtml(item.title)}}</h6></a>
+            </div>
+            <div class="card-content">
+              <html-echo html="{{_truncate(item.content, 200)}}"></html-echo>
+            </div>
+            <div class="card-actions">
+              <template is="dom-if" if="{{item.source}}">
+                <div class="source">Source: {{item.source}}</div>
+              </template>
+            </div>
           </div>
-          <div class="card-actions">
-              <uvalib-button href="{{item.url}}">More &raquo;</uvalib-button>
-          </div>
-        </uvalib-card>
+        </paper-material>
       </template>
     </div>
-
+    <uvalib-button href="http://news.library.virginia.edu">
+      <paper-material>More News</paper-material>
+    </uvalib-button>
   </template>
 
   <script>
@@ -57,10 +89,11 @@ This component handles the Library news display on the homepage
       is: 'uvalib-news-section',
 
       properties: {
-        prop1: {
-          type: String,
-          value: 'uvalib-news-section',
-        },
+
+        elevation: {
+          type: Number,
+          value: 1
+        }
       },
 
       _decodeHtml: function(html) {
