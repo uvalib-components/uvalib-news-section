@@ -46,6 +46,10 @@ This component handles the Library news display on the homepage
         text-decoration: none;
         color: #000000;
       }
+      .card-header h6 {
+        @apply(--font-title);
+        font-family: var(--font-primary);
+      }
       .card-content {
       }
       uvalib-button {
@@ -59,7 +63,7 @@ This component handles the Library news display on the homepage
       <uvalib-news items="{{newsItems}}" limit="3"></uvalib-news>
       <template is="dom-repeat" items="{{newsItems}}">
         <paper-material elevation="{{elevation}}">
-          <div class="card">
+          <div class="">
             <div class="card-header">
               <template is="dom-if" if="{{item.category}}">
                 <div class="category">{{item.category}}</div>
