@@ -17,7 +17,7 @@ This component handles the Library news display on the homepage
 
 <dom-module id="uvalib-news-section">
   <template>
-    <style>
+    <style is="custom-style">
       :host {
         display: block;
         width: 100%;
@@ -28,11 +28,13 @@ This component handles the Library news display on the homepage
       #news-items {
         @apply(--layout-horizontal);
         @apply(--layout-justified);
+        @apply(--layout-wrap);
       }
       h2 {
         text-align: center;
       }
-      paper-material {
+      .news-item {
+        min-width: 250px;
         padding: 10px;
         display: inline-block;
         background: var(--color-light-gray);
@@ -50,7 +52,12 @@ This component handles the Library news display on the homepage
         @apply(--font-title);
         font-family: var(--font-primary);
       }
-      .card-content {
+      .button {
+        padding: 10px;
+        display: inline-block;
+        background: var(--color-light-gray);
+        margin: 10px;
+        @apply(--layout-flex);
       }
       uvalib-button {
         margin-left: auto;
@@ -60,9 +67,9 @@ This component handles the Library news display on the homepage
     </style>
     <h2>Library News</h2>
     <div id="news-items">
-      <uvalib-news items="{{newsItems}}" limit="3"></uvalib-news>
+      <uvalib-news items="{{newsItems}}" limit="{{numItems}}"></uvalib-news>
       <template is="dom-repeat" items="{{newsItems}}">
-        <paper-material elevation="{{elevation}}">
+        <paper-material class="news-item" elevation="{{elevation}}">
           <div class="">
             <div class="card-header">
               <template is="dom-if" if="{{item.category}}">
@@ -83,7 +90,7 @@ This component handles the Library news display on the homepage
       </template>
     </div>
     <uvalib-button href="http://news.library.virginia.edu">
-      <paper-material>More News</paper-material>
+      <paper-material class="button">More News</paper-material>
     </uvalib-button>
   </template>
 
@@ -97,6 +104,10 @@ This component handles the Library news display on the homepage
         elevation: {
           type: Number,
           value: 1
+        },
+        numItems: {
+          type: Number,
+          value: 3
         }
       },
 
