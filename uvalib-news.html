@@ -24,14 +24,19 @@ This component handles fetching the news json
           type: Array,
           notify: true
         },
-        limit: Number
+        limit: {
+          type: Number,
+          observer: '_handleResponse'
+        }
       },
 
       _handleResponse: function(){
-        if (this.limit)
-          this.items = this.$.newsfeed.lastResponse.posts.slice(0,this.limit);
-        else
-          this.items = this.$.newsfeed.lastResponse.posts;
+        if (this.$.newsfeed.lastResponse) {
+          if (this.limit)
+            this.items = this.$.newsfeed.lastResponse.posts.slice(0,this.limit);
+          else
+            this.items = this.$.newsfeed.lastResponse.posts;
+        }
       }
 
     });
