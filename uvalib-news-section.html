@@ -78,7 +78,7 @@ This component handles the Library news display on the homepage
               <a href="{{item.url}}"><h6>{{_decodeHtml(item.title)}}</h6></a>
             </div>
             <div class="card-content">
-              <html-echo html="{{_truncate(item.content, 200)}}"></html-echo>
+              <html-echo html="{{_truncate(item.excerpt, 200)}}"></html-echo>
             </div>
             <div class="card-actions">
               <template is="dom-if" if="{{item.source}}">
