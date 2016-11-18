@@ -8,7 +8,7 @@
 <link rel="import" href="../iron-icon/iron-icon.html">
 
 <link rel="import" href="../uvalib-theme/uvalib-theme.html">
-<link rel="import" href="../uvalib-helper-libs/html-echo.html">
+<link rel="import" href="../uvalib-helper-libs/uvalib-html-echo.html">
 <link rel="import" href="../uvalib-button/uvalib-button.html">
 <link rel="import" href="../uvalib-theme/uvalib-icons.html">
 
@@ -66,7 +66,7 @@ This component handles the Library news display on the homepage
           <neon-animatable>
             <uvalib-card heading="{{_decodeHtml(item.title)}}" elevation="0">
               <div class="card-content">
-                <html-echo html="{{_truncate(item.content, 200)}}"></html-echo>
+                <uvalib-html-echo html="{{_truncate(item.content, 200)}}"></uvalib-html-echo>
               </div>
               <div class="card-actions">
                   <uvalib-button href="{{item.url}}">Get Information</uvalib-button>

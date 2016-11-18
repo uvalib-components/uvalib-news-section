@@ -2,7 +2,7 @@
 <link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
 
 <link rel="import" href="../uvalib-theme/uvalib-theme.html">
-<link rel="import" href="../uvalib-helper-libs/html-echo.html">
+<link rel="import" href="../uvalib-helper-libs/uvalib-html-echo.html">
 <link rel="import" href="../uvalib-button/uvalib-button.html">
 
 <link rel="import" href="uvalib-news.html">
@@ -78,7 +78,7 @@ This component handles the Library news display on the homepage
               <a href="{{item.url}}"><h6>{{_decodeHtml(item.title)}}</h6></a>
             </div>
             <div class="card-content">
-              <html-echo html="{{_truncate(item.excerpt, 200)}}"></html-echo>
+              <uvalib-html-echo html="{{_truncate(item.excerpt, 200)}}"></uvalib-html-echo>
             </div>
             <div class="card-actions">
               <template is="dom-if" if="{{item.source}}">
@@ -100,7 +100,6 @@ This component handles the Library news display on the homepage
       is: 'uvalib-news-section',
 
       properties: {
-
         elevation: {
           type: Number,
           value: 1
