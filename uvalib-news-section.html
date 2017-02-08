@@ -75,7 +75,7 @@ This component handles the Library news display on the homepage
               <template is="dom-if" if="{{item.category}}">
                 <div class="category">{{item.category}}</div>
               </template>
-              <a href="{{item.url}}"><h6>{{_decodeHtml(item.title)}}</h6></a>
+              <h6><a href="{{item.url}}">{{_decodeHtml(item.title)}}</a></h6>
             </div>
             <div class="card-content">
               <uvalib-html-echo html="{{_truncate(item.excerpt, 200)}}"></uvalib-html-echo>
