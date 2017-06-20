@@ -3,11 +3,7 @@
   "description": "This component handles the Library news display on the homepage",
   "main": "uvalib-news-section.html",
   "dependencies": {
-    "uvalib-elements": "uvalib-components/uvalib-elements#latest",
+    "uvalib-elements": "uvalib-components/uvalib-elements#master",
     "byutv-jsonp": "^1.2.0"
-  },
-  "resolutions": {
-    "polymer": "^1.7.1",
-    "lodash": "^4.17.4"
   }
 }
