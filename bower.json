@@ -3,30 +3,6 @@
   "description": "This component handles the Library news display on the homepage",
   "main": "uvalib-news-section.html",
   "dependencies": {
-    "uvalib-elements": "uvalib-components/uvalib-elements#master",
-    "byutv-jsonp": "^1.2.0"
-  },
-  "resolutions": {
-    "uvalib-elements": "master",
-    "uvalib-alerts": "master",
-    "uvalib-analytics": "master",
-    "uvalib-button": "master",
-    "uvalib-card": "master",
-    "uvalib-events-card": "master",
-    "uvalib-hours-card": "master",
-    "uvalib-header": "master",
-    "uvalib-helper-libs": "master",
-    "uvalib-footer": "master",
-    "uvalib-logos": "master",
-    "uvalib-liame": "master",
-    "uvalib-nav": "master",
-    "app-storage": "^0.10.0",
-    "uvalib-models": "master",
-    "uvalib-theme": "master",
-    "uvalib-skip-nav": "master",
-    "uvalib-news-section": "master",
-    "uvalib-search-box": "master",
-    "lodash": "^4.17.4",
-    "uva-footer": "master"
+    "uvalib-elements": "uvalib-components/uvalib-elements#master"
   }
 }
