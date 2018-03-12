@@ -71,7 +71,6 @@ This component handles the Library news display on the homepage
             }
             for(var i = 1; i < subs.length; i++){
                 var end = subs[i].indexOf(';');
-                l += end + 1;
                 ts = ts + '&' + subs[i];
                 if(ts.length >= this.previewCharacterLimit){
                     return ts.substring(0,this.previewCharacterLimit) + "&hellip;";
