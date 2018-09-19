@@ -1,0 +1,24 @@
+{
+  "name": "uvalib-news",
+  "description": "News",
+  "main": "uvalib-news.html",
+  "dependencies": {
+    "polymer": "Polymer/polymer#^2.0.0",
+    "uvalib-elements": "uvalib-components/uvalib-elements#master"
+  },
+  "resolutions": {
+    "polymer": "^v2.0.0",
+    "lodash": "^4.17.5",
+    "webcomponentsjs": "^v1.1.0"
+  },
+  "homepage": "https://github.com/uvalib-components/uvalib-news",
+  "_release": "3355a834fc",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "3355a834fc8568cdac820677b308fc5b62ec98d2"
+  },
+  "_source": "https://github.com/uvalib-components/uvalib-news.git",
+  "_target": "master",
+  "_originalSource": "uvalib-components/uvalib-news"
+}
