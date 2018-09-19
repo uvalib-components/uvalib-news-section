@@ -10,7 +10,7 @@ This component handles fetching the news json
 @demo demo/index.html
 -->
 
-<dom-module id="uvalib-news">
+<dom-module id="uvalib-news-source">
   <template>
     <!-- iron-ajax id="newsfeed" auto url="news.json" handle-as="json" on-response="_handleResponse"></iron-ajax -->
     <byutv-jsonp id="newsfeed" auto url="{{newsSource}}" params="{{_apiParameters}}" on-response="_handleResponse"></byutv-jsonp>
@@ -19,7 +19,7 @@ This component handles fetching the news json
   <script>
     Polymer({
 
-      is: 'uvalib-news',
+      is: 'uvalib-news-source',
 
       properties: {
         items: {

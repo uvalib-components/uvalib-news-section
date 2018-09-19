@@ -4,7 +4,7 @@
 <link rel="import" href="../uvalib-theme/uvalib-theme.html">
 <link rel="import" href="../uvalib-helper-libs/uvalib-html-echo.html">
 
-<link rel="import" href="uvalib-news.html">
+<link rel="import" href="uvalib-news-source.html">
 
 
 <!--
@@ -19,7 +19,7 @@ This component handles the Library news display on the homepage
     <style is="custom-style" include="uvalib-theme">
     </style>
     <div id="news-content">
-      <uvalib-news items="{{newsItems}}" limit="{{numItems}}"></uvalib-news>
+      <uvalib-news-source items="{{newsItems}}" limit="{{numItems}}"></uvalib-news-source>
       <template is="dom-repeat" items="{{newsItems}}">
         <div class="news-item">
           <template is="dom-if" if="{{item.source}}">
