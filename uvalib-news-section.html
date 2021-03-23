@@ -19,7 +19,7 @@ This component handles the Library news display on the homepage
     <style is="custom-style" include="uvalib-theme">
     </style>
     <div id="news-content">
-      <uvalib-news-source items="{{newsItems}}" limit="{{numItems}}"></uvalib-news-source>
+      <uvalib-news-source news-source="{{newsSource}}" items="{{newsItems}}" limit="{{numItems}}"></uvalib-news-source>
       <template is="dom-repeat" items="{{newsItems}}">
         <div class="news-item">
           <template is="dom-if" if="{{item.source}}">
@@ -46,6 +46,10 @@ This component handles the Library news display on the homepage
         previewCharacterLimit: {
           type: Number,
           value: 200
+        },
+        newsSource: {
+          type: String,
+          value: "//news.library.virginia.edu/api/get_recent_posts/"
         },
         numItems: {
           type: Number,
